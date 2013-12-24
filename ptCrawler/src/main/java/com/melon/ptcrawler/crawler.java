@@ -4,6 +4,8 @@
  */
 package com.melon.ptcrawler;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -29,15 +31,15 @@ public class crawler {
         try {
             System.out.println(response1.getStatusLine());
             HttpEntity entity1 = response1.getEntity();
-//            BufferedReader reader = new BufferedReader(new InputStreamReader(entity1.getContent(), "UTF-8"));
-            Document doc = Jsoup.parse(entity1.getContent(), "UTF-8", "http://www.oschina.net");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(entity1.getContent(), "UTF-8"));
 
-//            Element content = doc.getElementsByTag("body").get(0);
+            Document doc = Jsoup.parse(entity1.getContent(), "UTF-8", "http://www.csdn.net");
+            Element content = doc.getElementsByTag("body").get(0);
             Elements links = doc.getElementsByTag("a");
             for (Element link : links) {
                 String linkHref = link.attr("href");
                 String linkText = link.text();
-                System.out.println(linkText+"::"+linkHref);
+                System.out.println(linkText + ":-----:" + linkHref);
                 System.out.println();
             }
             EntityUtils.consume(entity1);
