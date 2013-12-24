@@ -34,7 +34,7 @@ public class crawler {
             BufferedReader reader = new BufferedReader(new InputStreamReader(entity1.getContent(), "UTF-8"));
 
             Document doc = Jsoup.parse(entity1.getContent(), "UTF-8", "http://www.csdn.net");
-            Element content = doc.getElementsByTag("body").get(0);
+//            Element content = doc.getElementsByTag("body").get(0);
             Elements links = doc.getElementsByTag("a");
             for (Element link : links) {
                 String linkHref = link.attr("href");
